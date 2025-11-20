@@ -17,6 +17,10 @@ function App() {
   });
 
   const [errors, setErrors] = useState<string[]>([]);
+  const dateISOS = form.installedAt
+  ? new Date(form.installedAt).toISOString().split(".")[0] + "Z"
+  : "";
+  console.log(dateISOS);
 
   const validate = () => {
     const errs: string[] = [];
@@ -48,7 +52,7 @@ function App() {
       body: JSON.stringify({
         adminEmail: form.adminEmail,
         ipAddress: form.ipAddress,
-        installedAt: form.installedAt,
+        installedAt: dateISOS,
         nickname: form.nickname || null,
         memory: Number(form.memory),
       }),
